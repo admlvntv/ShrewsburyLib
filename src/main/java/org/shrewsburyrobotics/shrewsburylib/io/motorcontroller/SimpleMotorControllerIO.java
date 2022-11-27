@@ -3,30 +3,21 @@ package org.shrewsburyrobotics.shrewsburylib.io.motorcontroller;
 import org.littletonrobotics.junction.LogTable;
 import org.littletonrobotics.junction.inputs.LoggableInputs;
 
+/** An abstract IO for controlling a motor controller. */
 public interface SimpleMotorControllerIO {
 
   class SimpleMotorControllerIOInputs implements LoggableInputs {
 
-    /**
-     * The position of the motor based on if a conversion factor was provided
-     */
+    /** The position of the motor based on if a conversion factor was provided */
     public double position = 0.0;
-    /**
-     * The velocity of the motor based on if a conversion factor was provided
-     */
+    /** The velocity of the motor based on if a conversion factor was provided */
     public double velocity = 0.0;
-    /**
-     * The voltage applied to the motor
-     */
+    /** The voltage applied to the motor */
     public double appliedVolts = 0.0;
-    /**
-     * The current drawn by the motor
-     */
-    public double[] current = new double[]{};
-    /**
-     * The temperature of the motor
-     */
-    public double[] temp = new double[]{};
+    /** The current drawn by the motor */
+    public double[] current = new double[] {};
+    /** The temperature of the motor */
+    public double[] temp = new double[] {};
 
     public void toLog(LogTable table) {
       table.put("Position", position);
@@ -61,7 +52,6 @@ public interface SimpleMotorControllerIO {
 
   /**
    * Set the voltage of the motor controller
-   * <p> Note: This is only supported if a conversion factor to radians was provided
    *
    * @param volts The voltage to set the motor controller to
    */

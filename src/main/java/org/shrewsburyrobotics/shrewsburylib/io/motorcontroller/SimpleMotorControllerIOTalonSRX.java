@@ -3,6 +3,7 @@ package org.shrewsburyrobotics.shrewsburylib.io.motorcontroller;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.math.util.Units;
 
+/** A Motor Controller IO class that interacts with a TalonSRX. */
 public class SimpleMotorControllerIOTalonSRX implements SimpleMotorControllerIO {
 
   private final WPI_TalonSRX motor;
@@ -11,8 +12,8 @@ public class SimpleMotorControllerIOTalonSRX implements SimpleMotorControllerIO 
   /**
    * Create a new SimpleMotorControllerIOTalonSRX
    *
-   * @param motorId   The ID of the motor
-   * @param inverted  Whether the motor is inverted
+   * @param motorId The ID of the motor
+   * @param inverted Whether the motor is inverted
    * @param gearRatio The gear ratio in inputs/outputs
    */
   public SimpleMotorControllerIOTalonSRX(int motorId, boolean inverted, double gearRatio) {
@@ -21,14 +22,13 @@ public class SimpleMotorControllerIOTalonSRX implements SimpleMotorControllerIO 
     this.rotsToRads = Units.rotationsToRadians(1) * gearRatio;
   }
 
-
   @Override
   public void updateInputs(SimpleMotorControllerIOInputs inputs) {
     inputs.position = motor.getSelectedSensorPosition() * rotsToRads;
     inputs.velocity = (motor.getSelectedSensorVelocity() / 60) * rotsToRads;
     inputs.appliedVolts = motor.getMotorOutputVoltage();
-    inputs.current = new double[]{motor.getStatorCurrent()};
-    inputs.temp = new double[]{motor.getTemperature()};
+    inputs.current = new double[] {motor.getStatorCurrent()};
+    inputs.temp = new double[] {motor.getTemperature()};
   }
 
   @Override

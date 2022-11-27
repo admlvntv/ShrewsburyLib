@@ -1,31 +1,34 @@
 package org.shrewsburyrobotics.shrewsburylib.input;
 
+import edu.wpi.first.networktables.BooleanPublisher;
+import edu.wpi.first.networktables.DoubleArrayPublisher;
 import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.networktables.RawPublisher;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import java.util.ArrayList;
 
 public abstract class CustomControllerBase extends Joystick {
 
-  private final NetworkTable controllerTable = NetworkTableInstance.getDefault()
-      .getTable("Controller");
+  private final NetworkTable controllerTable =
+      NetworkTableInstance.getDefault().getTable("Controller");
 
-  private final NetworkTableEntry commandQueueEntry = controllerTable.getEntry(
-      "CommandQueue"); // raw bytes
-  private final NetworkTableEntry commandQueueLengthEntry = controllerTable.getEntry(
-      "CommandQueueLength"); // double array
-  private final NetworkTableEntry hasCommandEntry = controllerTable.getEntry("HasCommand"); // bool
+  private final RawPublisher commandQueueEntry =
+      controllerTable.getRawTopic("CommandQueue").publish("raw");
+  private final DoubleArrayPublisher commandQueueLengthEntry =
+      controllerTable.getDoubleArrayTopic("CommandQueueLength").publish();
+  private final BooleanPublisher hasCommandEntry =
+      controllerTable.getBooleanTopic("HasCommand").publish(); // bool
 
   private final ArrayList<byte[]> commandList = new ArrayList<>();
 
   protected CustomControllerBase(int port) {
     super(port);
 
-    commandQueueEntry.setRaw(new byte[0]);
-    commandQueueLengthEntry.setDoubleArray(new double[0]);
-    hasCommandEntry.setBoolean(false);
+    commandQueueEntry.set(new byte[0]);
+    commandQueueLengthEntry.set(new double[0]);
+    hasCommandEntry.set(false);
   }
 
   /**
@@ -34,7 +37,7 @@ public abstract class CustomControllerBase extends Joystick {
    * @return does the controller have a command
    */
   public boolean hasCommand() {
-    return hasCommandEntry.getBoolean(false);
+    return controllerTable.getBooleanTopic("HasCommand").getEntry(false).get();
   }
 
   /**
@@ -47,9 +50,7 @@ public abstract class CustomControllerBase extends Joystick {
     commandList.add(command);
   }
 
-  /**
-   * Updates the command queue.
-   */
+  /** Updates the command queue. */
   public void updateQueue() {
     if (!hasCommand() && !commandList.isEmpty()) {
       int totalQueueLength = 0;
@@ -67,12 +68,11 @@ public abstract class CustomControllerBase extends Joystick {
           commandQueue[commandPointer] = b;
           commandPointer += 1;
         }
-
       }
 
-      commandQueueEntry.setRaw(commandQueue);
-      commandQueueLengthEntry.setDoubleArray(queueLength);
-      hasCommandEntry.setBoolean(true);
+      commandQueueEntry.set(commandQueue);
+      commandQueueLengthEntry.set(queueLength);
+      hasCommandEntry.set(true);
       commandList.clear();
     }
   }

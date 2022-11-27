@@ -1,13 +1,13 @@
 buildscript {
-    ext.WPI_VER = "2023.1.1-beta-3"
+    ext.WPI_VER = "2023.1.1-beta-4"
 }
 
 plugins {
     id 'java'
-
     id 'maven-publish'
-
     id "edu.wpi.first.GradleRIO" version "${WPI_VER}"
+
+    id "com.diffplug.spotless" version "6.11.0"
 }
 
 group 'org.shrewsburyrobotics'
@@ -65,8 +65,8 @@ dependencies {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = 'org.shrewsburyrobotics.shrewsburylib'
-            artifactId = 'library'
+            groupId = 'org.shrewsburyrobotics'
+            artifactId = 'shrewsburylib'
             version = "${version}"
 
             from components.java
@@ -78,8 +78,23 @@ test {
     useJUnitPlatform()
 }
 
+spotless {
+    java {
+        googleJavaFormat()
+
+        trimTrailingWhitespace()
+        endWithNewline()
+
+        removeUnusedImports()
+    }
+}
+
 javadoc {
     destinationDir = file('docs/')
+}
+
+compileJava {
+    dependsOn spotlessApply
 }
 
 build {

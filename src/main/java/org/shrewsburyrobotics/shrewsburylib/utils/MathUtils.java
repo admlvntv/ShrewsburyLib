@@ -1,8 +1,6 @@
 package org.shrewsburyrobotics.shrewsburylib.utils;
 
-/**
- * Collection of useful math functions.
- */
+/** Collection of useful math functions. */
 public class MathUtils {
 
   private MathUtils() {
@@ -12,8 +10,8 @@ public class MathUtils {
   /**
    * Returns the weighted average of two numbers.
    *
-   * @param a      The first number to average
-   * @param b      the current value of the variable you're trying to change
+   * @param a The first number to average
+   * @param b the current value of the variable you're trying to change
    * @param weight The weight of the second value.
    * @return The weighted average of a and b.
    */

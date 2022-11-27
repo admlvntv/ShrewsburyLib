@@ -4,22 +4,18 @@ import java.util.ArrayList;
 
 public class ControllerQueue {
 
-  private static volatile ControllerQueue INSTANCE = null;
+  private static ControllerQueue INSTANCE = null;
 
   private final ArrayList<CustomControllerBase> controllers = new ArrayList<>();
 
   /**
-   * Gets the instance of the controller queue
+   * Gets the instance of the controller queue.
    *
    * @return the controller queue
    */
   public static ControllerQueue getInstance() {
     if (INSTANCE == null) {
-      synchronized (ControllerQueue.class) {
-        if (INSTANCE == null) {
-          INSTANCE = new ControllerQueue();
-        }
-      }
+      INSTANCE = new ControllerQueue();
     }
 
     return INSTANCE;
@@ -28,8 +24,7 @@ public class ControllerQueue {
   /**
    * @see #getInstance()
    */
-  private ControllerQueue() {
-  }
+  private ControllerQueue() {}
 
   /**
    * Adds a new custom controller to the queue.
@@ -40,12 +35,10 @@ public class ControllerQueue {
     controllers.add(controller);
   }
 
-  /**
-   * Updates the queue of all controllers.
-   */
+  /** Updates the queue of all controllers. */
   @SuppressWarnings("Convert2MethodRef")
   public void run() {
-    controllers.forEach(controller -> controller.updateQueue());
+    controllers.forEach(CustomControllerBase::updateQueue);
   }
 
   /**

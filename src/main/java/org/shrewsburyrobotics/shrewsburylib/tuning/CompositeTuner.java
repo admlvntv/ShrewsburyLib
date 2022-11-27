@@ -10,9 +10,7 @@ public abstract class CompositeTuner implements Tuner {
   ArrayList<Subsystem> subsystems = new ArrayList<>();
   private HashMap<String, GenericEntry> entries = new HashMap<>();
 
-  /**
-   * Creates a new CompositeTuner.
-   */
+  /** Creates a new CompositeTuner. */
   protected CompositeTuner() {
     TunerManager.getTunerManager().registerTuner(this);
   }

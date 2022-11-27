@@ -5,17 +5,14 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import java.util.ArrayList;
 
-/**
- * A class that manages all active tuners and shows them in shuffleboard.
- */
+/** A class that manages all active tuners and shows them in shuffleboard. */
 public class TunerManager {
 
   private static TunerManager instance = null;
   private final ArrayList<Tuner> tuners = new ArrayList<>();
   private final SendableChooser<Tuner> tunerChooser = new SendableChooser<>();
 
-  private TunerManager() {
-  }
+  private TunerManager() {}
 
   /**
    * Register a tuner with the TunerManager.
@@ -24,8 +21,11 @@ public class TunerManager {
    */
   public void registerTuner(Tuner tuner) {
     // System.out.println("Registered tuner: " + tuner.getTunerName());
-    Shuffleboard.getTab(tuner.getTunerName()).add("Tuner Selection", tunerChooser)
-        .withWidget(BuiltInWidgets.kComboBoxChooser).withSize(2, 1).withPosition(0, 0);
+    Shuffleboard.getTab(tuner.getTunerName())
+        .add("Tuner Selection", tunerChooser)
+        .withWidget(BuiltInWidgets.kComboBoxChooser)
+        .withSize(2, 1)
+        .withPosition(0, 0);
     tuners.add(tuner);
     tuner.initializeTunerNetworkTables(Shuffleboard.getTab(tuner.getTunerName()));
     tunerChooser.setDefaultOption(tuner.getTunerName(), tuner);
@@ -47,6 +47,4 @@ public class TunerManager {
 
     return instance;
   }
-
-
 }

@@ -3,21 +3,16 @@ package org.shrewsburyrobotics.shrewsburylib.io.gyro;
 import org.littletonrobotics.junction.LogTable;
 import org.littletonrobotics.junction.inputs.LoggableInputs;
 
+/** An abstract IO for reading a Gyro. */
 public interface GyroIO {
 
   class GyroIOInputs implements LoggableInputs {
 
-    /**
-     * Whether the gyro is connected
-     */
+    /** Whether the gyro is connected */
     public boolean connected = false;
-    /**
-     * The angle of the gyro in degrees
-     */
+    /** The angle of the gyro in degrees */
     public double angle = 0.0;
-    /**
-     * The rate of the gyro in degrees per second
-     */
+    /** The rate of the gyro in degrees per second */
     public double rate = 0.0;
 
     public void toLog(LogTable table) {

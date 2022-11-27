@@ -27,15 +27,13 @@ public interface Tuner {
    */
   void initializeTunerNetworkTables(ShuffleboardTab tab);
 
-  /**
-   * Initializes the tuner.
-   */
+  /** Initializes the tuner. */
   void initializeTuner();
 
   /**
    * Adds an entry to the tuner.
    *
-   * @param name  The name of the entry.
+   * @param name The name of the entry.
    * @param entry The entry to add.
    */
   void addEntry(String name, GenericEntry entry);

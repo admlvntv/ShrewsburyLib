@@ -2,6 +2,7 @@ package org.shrewsburyrobotics.shrewsburylib.io.gyro;
 
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
 
+/** A Gyro IO class that interacts with an ADIS16470. */
 public class GyroIOADIS16470 implements GyroIO {
 
   private final ADIS16470_IMU gyro;
