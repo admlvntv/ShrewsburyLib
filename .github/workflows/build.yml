@@ -69,7 +69,7 @@ jobs:
         with:
           arguments: build
 
-      - name: Upload StuyLib Build
+      - name: Upload ShrewsburyLib Build
         uses: actions/upload-artifact@v3
         with:
           name: ShrewsburyLib-Release
