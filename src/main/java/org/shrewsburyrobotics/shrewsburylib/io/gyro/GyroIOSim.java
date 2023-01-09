@@ -21,6 +21,6 @@ public class GyroIOSim implements GyroIO {
   public void updateInputs(GyroIOInputs inputs) {
     inputs.connected = true;
     inputs.angle = angle.get().getDegrees();
-    inputs.rate = -1;
+    inputs.rate = 0;
   }
 }

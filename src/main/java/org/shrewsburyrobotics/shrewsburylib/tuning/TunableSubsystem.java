@@ -5,7 +5,12 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import java.util.HashMap;
 
-/** A subsystem that is tunable. */
+/**
+ * A subsystem that is tunable.
+ *
+ * @deprecated rework for 2023 and logging
+ */
+@Deprecated(since="2023.1.1", forRemoval = false)
 public abstract class TunableSubsystem extends SubsystemBase implements Tuner {
 
   private HashMap<String, GenericEntry> entries = new HashMap<>();

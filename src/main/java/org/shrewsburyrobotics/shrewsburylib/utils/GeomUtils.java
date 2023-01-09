@@ -113,7 +113,10 @@ public class GeomUtils {
    *
    * @param translation The translation
    * @return The direction of the translation
+   * @deprecated use {@link edu.wpi.first.math.geometry.Translation2d#getAngle}
+   * @see edu.wpi.first.math.geometry.Translation2d#getAngle
    */
+  @Deprecated(since="2023.1.1", forRemoval = true)
   public static Rotation2d direction(Translation2d translation) {
     return new Rotation2d(translation.getX(), translation.getY());
   }

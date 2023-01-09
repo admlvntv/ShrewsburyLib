@@ -28,7 +28,6 @@ public class SimpleMotorControllerIOTalonSRX implements SimpleMotorControllerIO 
     inputs.velocity = (motor.getSelectedSensorVelocity() / 60) * rotsToRads;
     inputs.appliedVolts = motor.getMotorOutputVoltage();
     inputs.current = new double[] {motor.getStatorCurrent()};
-    inputs.temp = new double[] {motor.getTemperature()};
   }
 
   @Override

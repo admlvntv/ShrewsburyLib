@@ -4,6 +4,10 @@ import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 
+/**
+ * @deprecated rework for 2023 and logging
+ */
+@Deprecated(since="2023.1.1", forRemoval = false)
 public interface Tuner {
 
   /**

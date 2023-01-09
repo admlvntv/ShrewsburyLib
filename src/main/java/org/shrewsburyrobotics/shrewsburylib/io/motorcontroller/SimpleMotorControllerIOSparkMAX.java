@@ -32,7 +32,6 @@ public class SimpleMotorControllerIOSparkMAX implements SimpleMotorControllerIO 
     inputs.velocity = motor.getEncoder().getVelocity();
     inputs.appliedVolts = motor.getAppliedOutput() * RobotController.getBatteryVoltage();
     inputs.current = new double[] {motor.getOutputCurrent()};
-    inputs.temp = new double[] {motor.getMotorTemperature()};
   }
 
   @Override

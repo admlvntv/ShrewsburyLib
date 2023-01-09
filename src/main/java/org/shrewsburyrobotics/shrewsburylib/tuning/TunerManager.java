@@ -5,7 +5,11 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import java.util.ArrayList;
 
-/** A class that manages all active tuners and shows them in shuffleboard. */
+/**
+ * A class that manages all active tuners and shows them in shuffleboard.
+ * @deprecated rework for 2023 and logging
+ */
+@Deprecated(since="2023.1.1", forRemoval = false)
 public class TunerManager {
 
   private static TunerManager instance = null;

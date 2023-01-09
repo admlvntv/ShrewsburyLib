@@ -16,15 +16,12 @@ public interface SimpleMotorControllerIO {
     public double appliedVolts = 0.0;
     /** The current drawn by the motor */
     public double[] current = new double[] {};
-    /** The temperature of the motor */
-    public double[] temp = new double[] {};
 
     public void toLog(LogTable table) {
       table.put("Position", position);
       table.put("Velocity", velocity);
       table.put("AppliedVolts", appliedVolts);
       table.put("Current", current);
-      table.put("Temp", temp);
     }
 
     public void fromLog(LogTable table) {
@@ -32,7 +29,6 @@ public interface SimpleMotorControllerIO {
       velocity = table.getDouble("Velocity", velocity);
       appliedVolts = table.getDouble("AppliedVolts", appliedVolts);
       current = table.getDoubleArray("Current", current);
-      temp = table.getDoubleArray("Temp", temp);
     }
   }
 
@@ -41,19 +37,19 @@ public interface SimpleMotorControllerIO {
    *
    * @param inputs The inputs to update
    */
-  void updateInputs(SimpleMotorControllerIOInputs inputs);
+  default void updateInputs(SimpleMotorControllerIOInputs inputs) {}
 
   /**
    * Set the speed of the motor controller
    *
    * @param speed The speed to set the motor controller to
    */
-  void setSpeed(double speed);
+  default void setSpeed(double speed) {}
 
   /**
    * Set the voltage of the motor controller
    *
    * @param volts The voltage to set the motor controller to
    */
-  void setVoltage(double volts);
+  default void setVoltage(double volts) {}
 }
