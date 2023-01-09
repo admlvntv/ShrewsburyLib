@@ -6,5 +6,4 @@
  *
  * @deprecated rework for 2023 and logging
  */
-@Deprecated
 package org.shrewsburyrobotics.shrewsburylib.tuning;
