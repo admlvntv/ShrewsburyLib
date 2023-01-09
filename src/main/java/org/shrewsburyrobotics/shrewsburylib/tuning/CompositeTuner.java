@@ -8,7 +8,7 @@ import java.util.HashMap;
 /**
  * @deprecated rework for 2023 and logging
  */
-@Deprecated(since="2023.1.1", forRemoval = false)
+@Deprecated(since = "2023.1.1", forRemoval = false)
 public abstract class CompositeTuner implements Tuner {
 
   ArrayList<Subsystem> subsystems = new ArrayList<>();

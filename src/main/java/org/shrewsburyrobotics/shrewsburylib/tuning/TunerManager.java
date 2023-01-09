@@ -7,9 +7,10 @@ import java.util.ArrayList;
 
 /**
  * A class that manages all active tuners and shows them in shuffleboard.
+ *
  * @deprecated rework for 2023 and logging
  */
-@Deprecated(since="2023.1.1", forRemoval = false)
+@Deprecated(since = "2023.1.1", forRemoval = false)
 public class TunerManager {
 
   private static TunerManager instance = null;
